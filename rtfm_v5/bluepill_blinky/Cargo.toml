@@ -1,0 +1,38 @@
+[package]
+name = "app"
+categories = ["embedded", "no-std"]
+authors = ["arrowcircle", "Emil Fresk <emil.fresk@gmail.com>"]
+description = "Example blinky for BluePill"
+keywords = ["arm", "cortex-m"]
+license = "MIT OR Apache-2.0"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+panic-halt = "0.2"
+panic-semihosting = "0.5"
+cortex-m-semihosting = "0.3.5"
+embedded-hal = "0.2.3"
+cortex-m-rtfm = "0.5.1"
+
+[dependencies.stm32f1xx-hal]
+version = "0.5.3"
+features = ["rt", "stm32f103", "medium"]
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "app"
+test = false
+bench = false
+
+[profile.dev]
+opt-level = 1
+codegen-units = 16
+debug = true
+lto = false
+
+[profile.release]
+opt-level = "s"     # optimize for size
+codegen-units = 1   # better optimizations
+debug = true        # symbols are nice and they don't increase the size on Flash
+lto = true          # better optimizations
