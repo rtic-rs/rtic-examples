@@ -15,7 +15,8 @@ const PERIOD: u32 = 100_000_000;
 // We need to pass monotonic = rtfm::cyccnt::CYCCNT to use schedule feature fo RTFM
 #[app(device = stm32f1xx_hal::pac, peripherals = true, monotonic = rtfm::cyccnt::CYCCNT)]
 const APP: () = {
-    // lateResources struct to pass led handler
+    // Global resources (global variables) are defined here and initialized with the 
+    // `LateResources` struct in init
     struct Resources {
         led: PC13<Output<PushPull>>,
     }

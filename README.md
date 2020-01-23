@@ -4,7 +4,7 @@
 
 ## Structure
 
-This repo does have example applications based on RTFM framework for popular hardware platforms (hello Bluepill).
+This repo does have example applications based on RTFM framework for popular hardware platforms (for example nRF series and Bluepill).
 
 `rtfm_v5` dir is for `RTFM` version `v0.5.x`. Each folder does have a full project structure with `README.md`, `Cargo.toml` and everything else needed to get the project to compile.
 
@@ -15,7 +15,7 @@ To run these examples, you need to have working environment as described in [Ins
 Short list:
 
 * Rust and cargo
-* toolchain for your microcontroller
+* Toolchain for your microcontroller
 * OpenOCD
 
 ## License
