@@ -6,7 +6,7 @@
 
 This repo does have example applications based on RTFM framework for popular hardware platforms (hello Bluepill).
 
-`rtfm_v5` dir is for `RTFM` version `v0.5.x`. Each folder does have full project structure with readme, cargo.toml and other stuff.
+`rtfm_v5` dir is for `RTFM` version `v0.5.x`. Each folder does have a full project structure with `README.md`, `Cargo.toml` and everything else needed to get the project to compile.
 
 ## Requirements
 
