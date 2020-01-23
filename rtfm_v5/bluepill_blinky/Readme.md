@@ -1,6 +1,6 @@
 # STM32F103 Bluepill RTFM Blink example
 
-Working example of simple LED blinking application for popular Bluepill boards based on the STM32F103C8 chip. Example uses schedule API and peripherials access. You will need `stlink v2` tool to flash the board.
+Working example of simple LED blinking application for popular Bluepill boards based on the STM32F103C8 chip. Example uses schedule API and peripherials access. You will need `stlink v2` tool or other programmer to flash the board.
 
 ## How-to
 
