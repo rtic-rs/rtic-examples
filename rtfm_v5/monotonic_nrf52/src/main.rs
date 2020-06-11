@@ -11,7 +11,7 @@ use nrf52832_hal as _;
 // use panic_halt as _;
 use cortex_m_semihosting::hprintln;
 use panic_semihosting as _;
-use rtfm::app;
+use rtic::app;
 
 #[app(device = nrf52832_hal::target, peripherals = true, monotonic = crate::monotonic_nrf52::Tim1)]
 const APP: () = {

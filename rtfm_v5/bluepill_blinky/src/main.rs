@@ -5,15 +5,15 @@
 
 extern crate panic_semihosting;
 use embedded_hal::digital::v2::OutputPin;
-use rtfm::app;
-use rtfm::cyccnt::U32Ext;
+use rtic::app;
+use rtic::cyccnt::U32Ext;
 use stm32f1xx_hal::gpio::{gpioc::PC13, Output, PushPull, State};
 use stm32f1xx_hal::prelude::*;
 
 const PERIOD: u32 = 100_000_000;
 
-// We need to pass monotonic = rtfm::cyccnt::CYCCNT to use schedule feature fo RTFM
-#[app(device = stm32f1xx_hal::pac, peripherals = true, monotonic = rtfm::cyccnt::CYCCNT)]
+// We need to pass monotonic = rtic::cyccnt::CYCCNT to use schedule feature fo RTIC
+#[app(device = stm32f1xx_hal::pac, peripherals = true, monotonic = rtic::cyccnt::CYCCNT)]
 const APP: () = {
     // Global resources (global variables) are defined here and initialized with the 
     // `LateResources` struct in init
@@ -55,7 +55,7 @@ const APP: () = {
 
     #[task(resources = [led], schedule = [blinker])]
     fn blinker(cx: blinker::Context) {
-        // Use the safe local `static mut` of RTFM
+        // Use the safe local `static mut` of RTIC
         static mut LED_STATE: bool = false;
 
         if *LED_STATE {
