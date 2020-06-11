@@ -1,12 +1,12 @@
-# `RTFM examples`
+# `RTIC examples`
 
-> Here you can find examples on different aspects of the RTFM scheduler.
+> Here you can find examples on different aspects of the RTIC scheduler.
 
 ## Structure
 
-This repo does have example applications based on RTFM framework for popular hardware platforms (for example nRF series and Bluepill).
+This repo does have example applications based on RTIC framework for popular hardware platforms (for example nRF series and Bluepill).
 
-`rtfm_v5` dir is for `RTFM` version `v0.5.x`. Each folder does have a full project structure with `README.md`, `Cargo.toml` and everything else needed to get the project to compile.
+`rtic_v5` dir is for `RTIC` version `v0.5.x`. Each folder does have a full project structure with `README.md`, `Cargo.toml` and everything else needed to get the project to compile.
 
 ## Requirements
 

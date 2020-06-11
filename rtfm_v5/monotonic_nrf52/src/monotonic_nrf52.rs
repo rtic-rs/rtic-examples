@@ -7,7 +7,7 @@ use core::{
     fmt, ops,
 };
 use nrf52832_hal::target;
-use rtfm::Monotonic;
+use rtic::Monotonic;
 
 /// A measurement of the counter. Opaque and useful only with `Duration`
 ///
@@ -140,7 +140,7 @@ impl Duration {
     }
 }
 
-// Used internally by RTFM to convert the duration into a known type
+// Used internally by RTIC to convert the duration into a known type
 impl TryInto<u32> for Duration {
     type Error = Infallible;
 
@@ -230,7 +230,7 @@ impl U32Ext for u32 {
     }
 }
 
-/// Implementor of the `rtfm::Monotonic` traits and used to "eat" the timer to not allow for
+/// Implementor of the `rtic::Monotonic` traits and used to "eat" the timer to not allow for
 /// erroneous configuration
 pub struct Tim1;
 
@@ -284,12 +284,12 @@ impl Tim1 {
     }
 }
 
-impl rtfm::Monotonic for Tim1 {
+impl rtic::Monotonic for Tim1 {
     type Instant = Instant;
 
-    fn ratio() -> rtfm::Fraction {
+    fn ratio() -> rtic::Fraction {
         // monotonic * fraction = sys clock
-        rtfm::Fraction {
+        rtic::Fraction {
             numerator: 64,
             denominator: 1,
         }
