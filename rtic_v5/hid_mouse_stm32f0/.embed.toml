@@ -1,0 +1,6 @@
+[default.general]
+chip = "STM32F042G6Ux"
+
+[default.rtt]
+enabled = true
+show_timestamps = true
