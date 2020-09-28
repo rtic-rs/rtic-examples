@@ -1,0 +1,105 @@
+name: Build
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - staging
+      - trying
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  # Run cargo fmt --check
+  style:
+    name: style
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          default: true
+          components: rustfmt
+
+      - name: Install all Rust targets
+        run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
+
+      - name: cargo fmt --check
+        run: find . -type f -name Cargo.toml -execdir cargo fmt -- --check ';'
+
+  # Compilation check
+  check:
+    name: check
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          default: true
+          components: rustfmt
+
+      - name: Install all Rust targets
+        run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
+
+      - name: cargo check
+        run: find . -type f -name Cargo.toml -execdir cargo check ';'
+
+  # Compilation
+  build:
+    name: build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          default: true
+          components: rustfmt
+
+      - name: Install all Rust targets
+        run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
+
+      - name: cargo build
+        run: find . -type f -name Cargo.toml -execdir cargo build --release ';'
+
+  # Refs: https://github.com/rust-lang/crater/blob/9ab6f9697c901c4a44025cf0a39b73ad5b37d198/.github/workflows/bors.yml#L125-L149
+  #
+  # ALL THE PREVIOUS JOBS NEEDS TO BE ADDED TO THE `needs` SECTION OF THIS JOB!
+
+  ci-success:
+    name: ci
+    if: github.event_name == 'push' && success()
+    needs:
+      - style
+      - check
+      - build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Mark the job as a success
+        run: exit 0
+  ci-failure:
+    name: ci
+    if: github.event_name == 'push' && !success()
+    needs:
+      - style
+      - check
+      - build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Mark the job as a failure
+        run: exit 1
