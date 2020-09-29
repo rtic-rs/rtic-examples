@@ -1,0 +1,21 @@
+[package]
+name = "stm32f042"
+version = "0.1.0"
+authors = ["Roman Valls Guimera <brainstorm@nopcode.org>", "Josh Johnson"]
+edition = "2018"
+
+[dependencies.defmt]
+git = "https://github.com/knurling-rs/defmt"
+branch = "main"
+
+[dependencies]
+embedded-hal = "0.2.4"
+usb-device = "0.2.5"
+usbd-hid = "0.4.4"
+rtt-target = { version = "0.2.2", features = ["cortex-m"] }
+panic-halt = "0.2.0"
+panic-rtt-target = { version = "0.1.1", features = ["cortex-m"] }
+cortex-m = "0.6.3"
+cortex-m-rtic = { version = "0.5.5" }
+stm32f0xx-hal = { version = "0.17.1", features = ["rt", "stm32f042", "stm32-usbd"] }
+stm32-usbd = { version = "0.5.1" }
