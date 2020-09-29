@@ -214,7 +214,6 @@ const APP: () = {
     fn exti_4_15_interrupt(ctx: exti_4_15_interrupt::Context) {
         rprintln!("Interrupts happening on EXTI for PA15...");
 
-        let dev = ctx.resources.usb_device;
         let hid = ctx.resources.usb_hid;
         let usr_led = ctx.resources.usr_led;
 
@@ -222,31 +221,31 @@ const APP: () = {
             0x8000 => {
                 rprintln!("PA15 triggered");
                 ctx.resources.exti.pr.write(|w| w.pif15().set_bit()); // Clear interrupt
-                send_mouse_report(Exclusive(hid), Exclusive(dev), 0, 0, 1);
+                send_mouse_report(Exclusive(hid), 0, 0, 1);
                 usr_led.toggle().ok();
             }
             0x10 => {
                 rprintln!("tb_left triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif4().set_bit());
-                send_mouse_report(Exclusive(hid), Exclusive(dev), 10, 0, 0);
+                send_mouse_report(Exclusive(hid), 5, 0, 0);
                 usr_led.toggle().ok();
             }
             0x20 => {
                 rprintln!("tb_up triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif5().set_bit());
-                send_mouse_report(Exclusive(hid), Exclusive(dev), 0, 10, 0);
+                send_mouse_report(Exclusive(hid), 0, 5, 0);
                 usr_led.toggle().ok();
             }
             0x40 => {
                 rprintln!("tb_right triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif6().set_bit());
-                send_mouse_report(Exclusive(hid), Exclusive(dev), -10, 0, 0);
+                send_mouse_report(Exclusive(hid), -5, 0, 0);
                 usr_led.toggle().ok();
             }
             0x80 => {
                 rprintln!("tb_down triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif7().set_bit());
-                send_mouse_report(Exclusive(hid), Exclusive(dev), 0, -10, 0);
+                send_mouse_report(Exclusive(hid), 0, -5, 0);
                 usr_led.toggle().ok();
             }
 
@@ -268,7 +267,6 @@ const APP: () = {
 
 fn send_mouse_report(
     mut shared_hid: impl Mutex<T = HIDClass<'static, usb::UsbBusType>>,
-    mut _shared_dev: impl Mutex<T = UsbDevice<'static, usb::UsbBusType>>,
     x: i8,
     y: i8,
     buttons: u8,
