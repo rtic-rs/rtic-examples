@@ -56,14 +56,8 @@ const APP: () = {
         // Alias peripherals
         let mut dp: pac::Peripherals = ctx.device;
 
-        /* Uncomment the following lines if you have a chip in TSSOP20 (STM32F042F)
-        or UFQFPN28 (STM32F042G) package
-        This code enables clock for SYSCFG and remaps USB pins to PA9 and PA10.
-        */
-
-        //XXX: Use usb_bus.remap_pins() instead of the two low level lines below
-        dp.RCC.apb2enr.modify(|_, w| w.syscfgen().set_bit());
-        dp.SYSCFG.cfgr1.modify(|_, w| w.pa11_pa12_rmp().remapped());
+        // This enables clock for SYSCFG and remaps USB pins to PA9 and PA10.
+        usb::remap_pins(&mut dp.RCC, &mut dp.SYSCFG);
 
         // Power on bbled dance
         //bbled_red.toggle().ok();
