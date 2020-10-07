@@ -1,8 +1,8 @@
 [package]
 name = "app"
 categories = ["embedded", "no-std"]
-authors = ["arrowcircle", "Emil Fresk <emil.fresk@gmail.com>"]
-description = "Example blinky for BluePill"
+authors = ["arrowcircle", "Emil Fresk <emil.fresk@gmail.com>", "Domenico Andreoli <domenico.andreoli@linux.com>"]
+description = "Heartbeat for stm32l4xx"
 keywords = ["arm", "cortex-m"]
 license = "MIT OR Apache-2.0"
 version = "0.1.0"
@@ -14,10 +14,7 @@ panic-semihosting = "0.5"
 cortex-m-semihosting = "0.3.5"
 embedded-hal = "0.2.3"
 cortex-m-rtic = "0.5.1"
-
-[dependencies.stm32f1xx-hal]
-version = "0.5.3"
-features = ["rt", "stm32f103", "medium"]
+stm32l4xx-hal = { version = "0.5.0", features = ["rt", "stm32l4x2"] }
 
 # this lets you use `cargo fix`!
 [[bin]]
