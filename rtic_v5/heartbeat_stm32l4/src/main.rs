@@ -65,6 +65,13 @@ const APP: () = {
         init::LateResources { led, intervals }
     }
 
+    #[idle]
+    fn idle(_: idle::Context) -> ! {
+        loop {
+            core::sync::atomic::spin_loop_hint();
+        }
+    }
+
     #[task(schedule = [blinker], resources = [led, &intervals])]
     fn blinker(cx: blinker::Context, state: usize) {
         let led = cx.resources.led;
