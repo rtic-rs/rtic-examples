@@ -1,19 +1,22 @@
 # STM32F103 Bluepill RTIC Blink example
 
-Working example of simple LED blinking application for popular Bluepill boards based on the STM32F103C8 chip. Example uses schedule API and peripherials access. You will need `stlink v2` tool or other programmer to flash the board.
+Working example of simple LED blinking application for popular Bluepill boards based on the STM32F103C8 chip.
+Example uses schedule API and peripherals access. You will need `stlink v2` tool or other programmer to flash the board.
 
 ## How-to
 
 ### Terminal workflow
 
-Rust embedded relies heavily on `terminal workflow`, you will enter commands in the terminal. This can be strange at first, but this enables usage of great things like continious integration tools.
+Rust embedded relies heavily on `terminal workflow`, you will enter commands in the terminal.
+This can be strange at first, but this enables usage of great things like continuous integration tools.
 
 For Mac OS X consider using `iTerm2` instead of Terminal application.
 For Windows consider using `powershell` (win + r -> powershell -> enter -> cd C:\examples\rtic_v5\bluepill_blinky)
 
 ### Build
 
-Run `cargo build` to compile the code. If you run it for the first time, it will take some time to download and compile dependencies. After that, you will see comething like:
+Run `cargo build` to compile the code. If you run it for the first time,
+it will take some time to download and compile dependencies. After that, you will see something like:
 
 ```bash
 >cargo build
@@ -24,7 +27,7 @@ If you see warnings, feel free to ask for help in chat or issues of this repo.
 
 ### Connect the board
 
-You need to connect you bluepill board to ST-Link and connect pins:
+You need to connect you Bluepill board to ST-Link and connect pins:
 
 | BOARD |    | ST-LINK |
 |-------|----|---------|
@@ -84,7 +87,8 @@ shutdown command invoked
 
 ## Troubleshooting
 
-If you are lucky and have new version of OpenOCD, you will need to change `openocd.cfg` file. Openocd will report error during the upload process, so you will just need to change line:
+If you are lucky and have new version of OpenOCD, you will need to change `openocd.cfg` file.
+Openocd will report error during the upload process, so you will just need to change line:
 
 ```txt
 source [find interface/stlink-v2.cfg]
