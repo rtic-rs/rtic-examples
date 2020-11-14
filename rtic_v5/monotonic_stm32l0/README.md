@@ -3,19 +3,13 @@
 In this example we show the use of a custom `rtic::Monotonic` implementation
 which uses a 16 bit timer of the `STM32L0` MCU.
 
-## Flashing
+## Flashing and running
 
-First, adjust your MCU in the `features` list of the `stm32l0xx-hal` in
-`Cargo.toml`:
+Flashing with a standard STLink v2 is easy with `cargo-embed`:
 
-    stm32l0xx-hal = { version = "...", features = ["rt", "mcu-STM32L071KBTx"] }
+```shell
+$ cargo install cargo-embed
+$ cargo embed --release
+```
 
-Install cargo-flash:
-
-    cargo install cargo-flash
-
-Connect a serial adapter to UART1 (57600 baud). Then, run:
-
-    cargo flash --chip stm32l071kbtx --release
-
-...and observe the logs in the serial console.
+Please review the `.embed.toml` file to change your target IC among other options.

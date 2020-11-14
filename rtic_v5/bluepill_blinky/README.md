@@ -35,7 +35,7 @@ You need to connect you bluepill board to ST-Link and connect pins:
 
 Plug in ST-Link to USB port and wait it to initialize.
 
-### Upload
+### Flashing and running
 
 Flashing with a standard STLink v2 is easy with `cargo-embed`:
 
@@ -43,3 +43,5 @@ Flashing with a standard STLink v2 is easy with `cargo-embed`:
 $ cargo install cargo-embed
 $ cargo embed --release
 ```
+
+Please review the `.embed.toml` file to change your target IC among other options.
