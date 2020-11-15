@@ -141,7 +141,7 @@ impl Instant {
 
     /// Returns the amount of time elapsed from another instant to this one.
     pub fn duration_since(&self, earlier: Instant) -> Duration {
-        let diff = self.inner - earlier.inner;
+        let diff = self.inner.wrapping_sub(earlier.inner);
         assert!(diff >= 0, "second instant is later than self");
         Duration { inner: diff as u16 }
     }
