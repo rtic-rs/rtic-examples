@@ -38,64 +38,13 @@ You need to connect you Bluepill board to ST-Link and connect pins:
 
 Plug in ST-Link to USB port and wait it to initialize.
 
-### Upload
+### Flashing and running
 
-We will use openocd to upload the code wit simple one-line one-command script:
+Flashing with a standard STLink v2 is easy with `cargo-embed`:
 
-```bash
-openocd -f openocd.cfg -c "program target/thumbv7m-none-eabi/debug/app verify reset exit"
+```shell
+$ cargo install cargo-embed
+$ cargo embed --release
 ```
 
-You will see something like:
-
-```bash
-openocd -f openocd.cfg -c "program target/thumbv7m-none-eabi/debug/app verify reset exit"
-Open On-Chip Debugger 0.10.0
-Licensed under GNU GPL v2
-For bug reports, read
-	http://openocd.org/doc/doxygen/bugs.html
-Info : auto-selecting first available session transport "hla_swd". To override use 'transport select <transport>'.
-Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
-adapter speed: 1000 kHz
-adapter_nsrst_delay: 100
-none separate
-Info : Unable to match requested speed 1000 kHz, using 950 kHz
-Info : Unable to match requested speed 1000 kHz, using 950 kHz
-Info : clock speed 950 kHz
-Info : STLINK v2 JTAG v33 API v2 SWIM v7 VID 0x0483 PID 0x3748
-Info : using stlink api v2
-Info : Target voltage: 3.196863
-Info : stm32f1x.cpu: hardware has 6 breakpoints, 4 watchpoints
-target halted due to debug-request, current mode: Thread
-xPSR: 0x01000000 pc: 0x080033b4 msp: 0x20005000
-** Programming Started **
-auto erase enabled
-Info : device id = 0x20036410
-Info : flash size = 64kbytes
-target halted due to breakpoint, current mode: Thread
-xPSR: 0x61000000 pc: 0x2000003a msp: 0x20005000
-wrote 19456 bytes from file target/thumbv7m-none-eabi/debug/app in 1.118153s (16.992 KiB/s)
-** Programming Finished **
-** Verify Started **
-target halted due to breakpoint, current mode: Thread
-xPSR: 0x61000000 pc: 0x2000002e msp: 0x20005000
-verified 18588 bytes in 0.288441s (62.933 KiB/s)
-** Verified OK **
-** Resetting Target **
-shutdown command invoked
-```
-
-## Troubleshooting
-
-If you are lucky and have new version of OpenOCD, you will need to change `openocd.cfg` file.
-Openocd will report error during the upload process, so you will just need to change line:
-
-```txt
-source [find interface/stlink-v2.cfg]
-```
-
-to
-
-```txt
-source [find interface/stlink.cfg]
-```
+Please review the `.embed.toml` file to change your target IC among other options.
