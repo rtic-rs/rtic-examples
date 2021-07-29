@@ -53,7 +53,7 @@ jobs:
         run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
 
       - name: cargo check
-        run: find . -type f -name Cargo.toml -execdir cargo check ';'
+        run: find . -type f -name Cargo.toml -execdir cargo check --manifest-path {} +
 
   # Compilation
   build:
@@ -75,7 +75,7 @@ jobs:
         run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
 
       - name: cargo build
-        run: find . -type f -name Cargo.toml -execdir cargo build --release ';'
+        run: find . -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
 
   # Refs: https://github.com/rust-lang/crater/blob/9ab6f9697c901c4a44025cf0a39b73ad5b37d198/.github/workflows/bors.yml#L125-L149
   #
