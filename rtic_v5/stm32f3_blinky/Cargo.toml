@@ -14,7 +14,7 @@ cortex-m-rtic = "0.5.1"
 
 [dependencies.stm32f3xx-hal]
 features = ["stm32f303xc", "rt"]
-version = "0.6.1"
+version = "0.8.0"
 
 # this lets you use `cargo fix`!
 [[bin]]
