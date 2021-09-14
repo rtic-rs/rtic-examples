@@ -1,7 +1,6 @@
-# STM32F103 Bluepill RTIC Blink example
+# STM32L4 RTIC Blink example
 
-Working example of simple LED blinking application for popular Bluepill boards based on the STM32F103C8 chip.
-Example uses schedule API and peripherals access. You will need `stlink v2` tool or other programmer to flash the board.
+Working example of simple LED blinking application for STM32l4xx.
 
 ## How-to
 
@@ -11,7 +10,7 @@ Rust embedded relies heavily on `terminal workflow`, you will enter commands in 
 This can be strange at first, but this enables usage of great things like continuous integration tools.
 
 For Mac OS X consider using `iTerm2` instead of Terminal application.
-For Windows consider using `powershell` (win + r -> powershell -> enter -> cd C:\examples\rtic_v5\bluepill_blinky)
+For Windows consider using `powershell` (win + r -> powershell -> enter -> cd C:\examples\rtic_v5\heartbeat_stm32l4)
 
 ### Build
 
