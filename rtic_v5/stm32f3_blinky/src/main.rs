@@ -27,16 +27,16 @@ const APP: () = {
         let mut core = cx.core;
         core.DWT.enable_cycle_counter();
 
-        let device: stm32f3xx_hal::stm32::Peripherals = cx.device;
+        let device: stm32f3xx_hal::pac::Peripherals = cx.device;
 
         // Setup clocks
         let mut flash = device.FLASH.constrain();
         let mut rcc = device.RCC.constrain();
         let _clocks = rcc
             .cfgr
-            .use_hse(8.mhz())
-            .sysclk(72.mhz())
-            .pclk1(36.mhz())
+            .use_hse(8.MHz())
+            .sysclk(72.MHz())
+            .pclk1(36.MHz())
             .freeze(&mut flash.acr);
 
         // Setup LED
