@@ -18,6 +18,12 @@ Short list:
 * Toolchain for your microcontroller
 * OpenOCD
 
+## External examples
+
+Some projects maintain RTIC examples in their own repository. Follow these links to find more RTIC examples.
+
+- The [`teensy4-rs` project](https://github.com/mciantyre/teensy4-rs) maintains `RTIC v1.0` examples that run on the Teensy 4.0 and 4.1.
+
 ## License
 
 Licensed under either of
