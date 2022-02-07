@@ -6,7 +6,8 @@
 
 This repo does have example applications based on RTIC framework for popular hardware platforms (for example nRF series and Bluepill).
 
-`rtic_v5` dir is for `RTIC` version `v0.5.x`. Each folder does have a full project structure with `README.md`, `Cargo.toml` and everything else needed to get the project to compile.
+`rtic_v0.5` dir is for `RTIC` version `v0.5.x`, `rtic_v1` for `v1.0`.
+Each folder does have a full project structure with `README.md`, `Cargo.toml` and everything else needed to get the project to compile.
 
 ## Requirements
 
