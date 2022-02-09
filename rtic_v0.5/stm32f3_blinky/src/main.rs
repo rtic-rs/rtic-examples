@@ -15,7 +15,7 @@ const PERIOD: u32 = 10_000_000;
 // We need to pass monotonic = rtic::cyccnt::CYCCNT to use schedule feature fo RTIC
 #[app(device = stm32f3xx_hal::pac, peripherals = true, monotonic = rtic::cyccnt::CYCCNT)]
 const APP: () = {
-    // Global resources (global variables) are defined here and initialized with the 
+    // Global resources (global variables) are defined here and initialized with the
     // `LateResources` struct in init
     struct Resources {
         led: PE10<Output<PushPull>>,
