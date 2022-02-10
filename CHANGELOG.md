@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-Updated v0.6-alpha.5 project to RTIC v1.0
+- Updated v0.6-alpha.5 project to RTIC v1.0
 
 ### Fixed
 
-Fixed folder structure to better match RTIC versions
+- Fix cargo fmt to actually fail CI
+- Fixed folder structure to better match RTIC versions

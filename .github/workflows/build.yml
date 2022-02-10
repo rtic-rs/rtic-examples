@@ -31,7 +31,7 @@ jobs:
         run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
 
       - name: cargo fmt --check
-        run: find . -type f -name Cargo.toml -execdir cargo fmt -- --check ';'
+        run: find . -type f -name Cargo.toml -execdir cargo fmt --check --manifest-path {} +
 
   # Compilation check
   check:
