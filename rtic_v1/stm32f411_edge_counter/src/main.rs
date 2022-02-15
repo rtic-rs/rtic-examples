@@ -36,7 +36,7 @@ mod app {
         rprintln!("init");
 
         let rcc = ctx.device.RCC.constrain();
-        let _clocks = rcc.cfgr.sysclk(48.mhz()).freeze();
+        let _clocks = rcc.cfgr.sysclk(48.MHz()).freeze();
 
         let gpioc = ctx.device.GPIOC.split();
         let led = gpioc.pc13.into_push_pull_output();
