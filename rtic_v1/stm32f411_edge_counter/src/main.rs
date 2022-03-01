@@ -23,8 +23,8 @@ mod app {
 
     #[local]
     struct Local {
-        led: Pin<Output<PushPull>, 'C', 13>,
-        pin: Pin<Input<PullUp>, 'A', 0>,
+        led: Pin<'C', 13, Output<PushPull>>,
+        pin: Pin<'A', 0, Input<PullUp>>,
     }
 
     #[monotonic(binds = SysTick, default = true)]
