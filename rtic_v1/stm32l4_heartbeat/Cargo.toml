@@ -1,0 +1,40 @@
+[package]
+name = "stm32l4_heartbeat"
+categories = ["embedded", "no-std"]
+authors = [
+    "arrowcircle",
+    "Emil Fresk <emil.fresk@gmail.com>",
+    "Domenico Andreoli <domenico.andreoli@linux.com>",
+]
+description = "Heartbeat for stm32l4xx"
+keywords = ["arm", "cortex-m"]
+license = "MIT OR Apache-2.0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+embedded-hal = "0.2.6"
+cortex-m-rtic = "1.0.0"
+stm32l4xx-hal = { version = "0.6.0", features = ["rt", "stm32l4x2"] }
+heapless = "0.7.10"
+systick-monotonic = "1.0.0"
+panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
+rtt-target = { version = "0.3.1", features = ["cortex-m"] }
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "stm32l4_heartbeat"
+test = false
+bench = false
+
+[profile.dev]
+opt-level = 1
+codegen-units = 16
+debug = true
+lto = false
+
+[profile.release]
+opt-level = "s"   # optimize for size
+codegen-units = 1 # better optimizations
+debug = true      # symbols are nice and they don't increase the size on Flash
+lto = true        # better optimizations
