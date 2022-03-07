@@ -1,0 +1,34 @@
+[package]
+name = "stm32l0_monotonic"
+categories = ["embedded", "no-std"]
+authors = ["Danilo Bargen <mail@dbrgn.ch>"]
+description = "Example Monotonic trait"
+keywords = ["arm", "cortex-m"]
+license = "MIT OR Apache-2.0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cortex-m-rtic = "1.0.0"
+embedded-time = "0.12.1"
+panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
+rtt-target = { version = "0.3.1", features = ["cortex-m"] }
+stm32l0xx-hal = { version = "0.9.0", features = ["rt", "mcu-STM32L031K6Tx"] }
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "stm32l0_monotonic"
+test = false
+bench = false
+
+[profile.dev]
+opt-level = 1
+codegen-units = 16
+debug = true
+lto = false
+
+[profile.release]
+opt-level = "s"   # optimize for size
+codegen-units = 1 # better optimizations
+debug = true      # symbols are nice and they don't increase the size on Flash
+lto = true        # better optimizations
