@@ -11,7 +11,7 @@ mod app {
     use core::sync::atomic::{AtomicUsize, Ordering};
     use rtt_target::{rprintln, rtt_init_print};
     use stm32f4xx_hal::{
-        gpio::{gpioa::PA0, gpioc::PC6, Alternate, Edge, Input, Output, Pin, PullUp, PushPull},
+        gpio::{gpioa::PA0, gpioc::PC6, Alternate, Edge, Input, Output, Pin, PushPull},
         prelude::*,
     };
     use systick_monotonic::{fugit::Duration, Systick};
@@ -24,7 +24,7 @@ mod app {
     #[local]
     struct Local {
         led: Pin<'C', 13, Output<PushPull>>,
-        pin: Pin<'A', 0, Input<PullUp>>,
+        pin: Pin<'A', 0, Input>,
     }
 
     #[monotonic(binds = SysTick, default = true)]
