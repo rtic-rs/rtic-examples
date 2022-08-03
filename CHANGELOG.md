@@ -11,5 +11,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Update stm32l4 to use heapless 0.6
 - Fix cargo fmt to actually fail CI
 - Fixed folder structure to better match RTIC versions
