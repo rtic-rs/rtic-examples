@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Add `flip-link` to support examples using it
 - Updated v0.6-alpha.5 project to RTIC v1.0
 
 ### Fixed
 
+- Use rust-cache instead of native GHA cache
 - Update stm32l4 to use heapless 0.6
 - Fix cargo fmt to actually fail CI
 - Fixed folder structure to better match RTIC versions
