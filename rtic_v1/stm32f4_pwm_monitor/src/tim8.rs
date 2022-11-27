@@ -2,7 +2,7 @@ use crate::app::{tim8_cc, PwmMonitor};
 use rtic::mutex_prelude::*;
 
 pub(crate) fn tim8_cc(mut context: tim8_cc::Context) {
-    let monitor: &PwmMonitor = &context.local.monitor;
+    let monitor: &PwmMonitor = context.local.monitor;
 
     // First, check that this interrupt is a valid capture, since this interrupt
     // fires twice per period. If not, bail out to speed up the interrupt.
