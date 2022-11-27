@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added Clippy to CI
 - Add `flip-link` to support examples using it
 - Updated v0.6-alpha.5 project to RTIC v1.0
 
