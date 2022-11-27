@@ -56,8 +56,9 @@ impl Tim6Monotonic {
         // Enable counter
         timer.cr1.modify(|_, w| w.cen().set_bit());
 
-        // Explicitly drop timer instance so it cannot be reused or reconfigured
-        drop(timer);
+        // The timer is dropped as it goes out of scope,
+        // thus initializing it consumes it and the configuration
+        // becomes "persistent"
     }
 }
 
