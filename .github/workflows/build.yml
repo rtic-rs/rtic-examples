@@ -94,6 +94,9 @@ jobs:
 
       - name: Install all Rust targets
         run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
+      
+      - name: Install flip-link
+        run: cargo install flip-link
 
       - name: cargo build
         run: find . -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
