@@ -279,8 +279,9 @@ impl Tim1 {
         // Start the timer
         timer.tasks_start.write(|w| unsafe { w.bits(1) });
 
-        // Throw away the timer, it is now setup and consumed
-        drop(timer);
+        // The timer is dropped as it goes out of scope,
+        // thus initializing it consumes it and the configuration
+        // becomes "persistent"
     }
 }
 

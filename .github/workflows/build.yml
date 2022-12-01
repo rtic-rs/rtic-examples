@@ -58,6 +58,31 @@ jobs:
       - name: cargo check
         run: find . -type f -name Cargo.toml -execdir cargo check --target-dir /tmp/build --manifest-path {} +
 
+  # Clippy
+  clippy:
+    name: Cargo clippy
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Rust stable
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: x86_64-unknown-linux-gnu
+          override: true
+
+      - name: Cache Dependencies
+        uses: Swatinem/rust-cache@v1
+
+      - name: Install all Rust targets
+        run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
+
+      - name: cargo clippy
+        run: find . -type f -name Cargo.toml -execdir cargo clippy --target-dir /tmp/build --manifest-path {} +
+
+
   # Compilation
   build:
     name: build
@@ -96,6 +121,7 @@ jobs:
     needs:
       - style
       - check
+      - clippy
       - build
     runs-on: ubuntu-20.04
     steps:

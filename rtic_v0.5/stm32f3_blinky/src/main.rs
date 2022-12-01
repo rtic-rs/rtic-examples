@@ -49,7 +49,7 @@ const APP: () = {
         // Schedule the blinking task
         cx.schedule.blinker(cx.start + PERIOD.cycles()).unwrap();
 
-        init::LateResources { led: led }
+        init::LateResources { led }
     }
 
     #[task(resources = [led], schedule = [blinker])]
