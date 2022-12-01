@@ -40,27 +40,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-#        borrow from cortex-m-rtic's GHA
-      - name: Cache cargo dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            - ~/.cargo/bin/
-            - ~/.cargo/registry/index/
-            - ~/.cargo/registry/cache/
-            - ~/.cargo/git/db/
-          key: ${{ runner.OS }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-            ${{ runner.OS }}-cargo-
-      - name: Cache build output dependencies
-        uses: actions/cache@v2
-        with:
-          path: /tmp/build
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ hashFiles('**/Cargo.lock') }}
-            ${{ runner.OS }}-build-
 
       - name: Install Rust
         uses: actions-rs/toolchain@v1
@@ -69,6 +48,9 @@ jobs:
           toolchain: stable
           default: true
           components: rustfmt
+
+      - name: Cache Dependencies
+        uses: Swatinem/rust-cache@v1
 
       - name: Install all Rust targets
         run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
@@ -92,8 +74,14 @@ jobs:
           default: true
           components: rustfmt
 
+      - name: Cache Dependencies
+        uses: Swatinem/rust-cache@v1
+
       - name: Install all Rust targets
         run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
+      
+      - name: Install flip-link
+        run: cargo install flip-link
 
       - name: cargo build
         run: find . -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
