@@ -19,6 +19,11 @@ Short list:
 * Toolchain for your microcontroller
 * OpenOCD
 
+## Contributing
+New examples are always welcome!
+
+When contributing a new example you must make sure to also add it to `.github/dependabot.yml`.
+
 ## External examples
 
 Some projects maintain RTIC examples in their own repository. Follow these links to find more RTIC examples.

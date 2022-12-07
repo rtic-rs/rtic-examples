@@ -1,0 +1,51 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  # list all projects here
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v0.5/nrf52_monotonic"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v0.5/stm32f0_hid_mouse"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v0.5/stm32f1_bluepill_blinky"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v0.5/stm32f3_blinky"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v0.5/stm32l0_monotonic"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v0.5/stm32l4_heartbeat"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v1/nrf52_monotonic"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v1/stm32f1_bluepill_blinky"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v1/stm32f3_blinky"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v1/stm32f411_edge_counter"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v1/stm32f4_pwm_monitor"
+    schedule:
+      interval: "weekly"
