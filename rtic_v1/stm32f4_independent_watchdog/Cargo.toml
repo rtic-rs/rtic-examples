@@ -1,0 +1,22 @@
+[package]
+name = "stm32f4_independent_watchdog"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cortex-m = { version = "0.7", features = ["critical-section-single-core"]}
+cortex-m-rtic = "1.1"
+
+stm32f4xx-hal = { version = "0.13", features = ["stm32f401", "rtic", "rtic-monotonic"] }
+
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+fugit = "0.3"
+
+defmt = "0.3"
+defmt-rtt = "0.4"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
