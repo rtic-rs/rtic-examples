@@ -22,7 +22,7 @@ Short list:
 ## Contributing
 New examples are always welcome!
 
-When contributing a new example you must make sure to also add it to `.github/dependabot.yml`.
+When contributing a new example you must make sure to also add it to `.github/dependabot.yml`. To do so, run `update_dependabot_config.sh` which will update the file for you.
 
 ## External examples
 

@@ -1,10 +1,10 @@
+# file automatically generated using update_dependabot.sh, re-run the script to update this file!
 version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-  # list all projects here
   - package-ecosystem: "cargo"
     directory: "/rtic_v0.5/nrf52_monotonic"
     schedule:
@@ -43,6 +43,10 @@ updates:
       interval: "weekly"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f411_edge_counter"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v1/stm32f4_independent_watchdog"
     schedule:
       interval: "weekly"
   - package-ecosystem: "cargo"

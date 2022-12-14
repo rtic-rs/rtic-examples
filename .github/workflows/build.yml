@@ -111,6 +111,17 @@ jobs:
       - name: cargo build
         run: find . -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
 
+  check-dependabot-config:
+    name: Ensure that `dependabot.yml` is up to date
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run the update script
+        run: ./update_dependabot_config.sh
+      - name: Ensure that nothing has changed
+        run: git diff && git diff --quiet
+
   # Refs: https://github.com/rust-lang/crater/blob/9ab6f9697c901c4a44025cf0a39b73ad5b37d198/.github/workflows/bors.yml#L125-L149
   #
   # ALL THE PREVIOUS JOBS NEEDS TO BE ADDED TO THE `needs` SECTION OF THIS JOB!
@@ -123,6 +134,7 @@ jobs:
       - check
       - clippy
       - build
+      - check-dependabot-config
     runs-on: ubuntu-20.04
     steps:
       - name: Mark the job as a success
