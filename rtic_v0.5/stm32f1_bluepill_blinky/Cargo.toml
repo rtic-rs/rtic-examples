@@ -16,7 +16,7 @@ embedded-hal = "0.2.3"
 cortex-m-rtic = "0.5.1"
 
 [dependencies.stm32f1xx-hal]
-version = "0.5.3"
+version = "0.10.0"
 features = ["rt", "stm32f103", "medium"]
 
 # this lets you use `cargo fix`!
