@@ -7,7 +7,7 @@ edition = "2021"
 cortex-m = { version = "0.7", features = ["critical-section-single-core"]}
 cortex-m-rtic = "1.1"
 
-stm32f4xx-hal = { version = "0.13", features = ["stm32f401", "rtic", "rtic-monotonic"] }
+stm32f4xx-hal = { version = "0.14", features = ["stm32f401", "rtic", "rtic-monotonic"] }
 
 panic-probe = { version = "0.3", features = ["print-defmt"] }
 
