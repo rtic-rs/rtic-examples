@@ -40,9 +40,9 @@ mod app {
 
         let _clocks = rcc
             .cfgr
-            .use_hse(8.mhz())
-            .sysclk(36.mhz())
-            .pclk1(36.mhz())
+            .use_hse(8.MHz())
+            .sysclk(36.MHz())
+            .pclk1(36.MHz())
             .freeze(&mut flash.acr);
 
         // Setup LED
