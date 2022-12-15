@@ -107,10 +107,7 @@ mod app {
         // Return resources and timer
         (
             Shared {},
-            Local {
-                led: led,
-                i2c: i2c_tmp,
-            },
+            Local { led, i2c: i2c_tmp },
             init::Monotonics(mono),
         )
     }
