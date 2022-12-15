@@ -5,7 +5,6 @@
 
 extern crate panic_semihosting;
 
-use heapless::consts::*;
 use heapless::Vec;
 
 use rtic::app;
@@ -27,7 +26,7 @@ const APP: () = {
     // `LateResources` struct in init
     struct Resources {
         led: PB3<Output<PushPull>>,
-        intervals: Vec<u32, U6>,
+        intervals: Vec<u32, 6>,
     }
 
     #[init(schedule = [blinker])]
@@ -50,7 +49,7 @@ const APP: () = {
         );
 
         // Simple heart beat LED on/off sequence
-        let mut intervals: Vec<u32, U6> = Vec::new();
+        let mut intervals: Vec<u32, 6> = Vec::new();
         intervals.push(MILLI_BEAT * 30).unwrap(); // P Wave
         intervals.push(MILLI_BEAT * 40).unwrap(); // PR Segment
         intervals.push(MILLI_BEAT * 120).unwrap(); // QRS Complex
