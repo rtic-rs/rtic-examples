@@ -18,4 +18,4 @@ panic-rtt-target = { version = "0.1.1", features = ["cortex-m"] }
 cortex-m = "0.6.3"
 cortex-m-rtic = { version = "0.5.5" }
 stm32f0xx-hal = { version = "0.17.1", features = ["rt", "stm32f042", "stm32-usbd"] }
-stm32-usbd = { version = "0.5.1" }
+stm32-usbd = { version = "0.6.0" }
