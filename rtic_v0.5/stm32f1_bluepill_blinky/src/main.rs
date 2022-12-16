@@ -4,10 +4,9 @@
 #![no_std]
 
 extern crate panic_semihosting;
-use embedded_hal::digital::v2::OutputPin;
 use rtic::app;
 use rtic::cyccnt::U32Ext;
-use stm32f1xx_hal::gpio::{gpioc::PC13, Output, PushPull, State};
+use stm32f1xx_hal::gpio::{gpioc::PC13, Output, PinState, PushPull};
 use stm32f1xx_hal::prelude::*;
 
 const PERIOD: u32 = 100_000_000;
@@ -31,21 +30,21 @@ const APP: () = {
 
         // Setup clocks
         let mut flash = device.FLASH.constrain();
-        let mut rcc = device.RCC.constrain();
-        let mut _afio = device.AFIO.constrain(&mut rcc.apb2);
+        let rcc = device.RCC.constrain();
+        let mut _afio = device.AFIO.constrain();
         let _clocks = rcc
             .cfgr
-            .use_hse(8.mhz())
-            .sysclk(72.mhz())
-            .pclk1(36.mhz())
+            .use_hse(8.MHz())
+            .sysclk(72.MHz())
+            .pclk1(36.MHz())
             .freeze(&mut flash.acr);
 
         // Setup LED
-        let mut gpioc = device.GPIOC.split(&mut rcc.apb2);
+        let mut gpioc = device.GPIOC.split();
         let mut led = gpioc
             .pc13
-            .into_push_pull_output_with_state(&mut gpioc.crh, State::Low);
-        led.set_low().unwrap();
+            .into_push_pull_output_with_state(&mut gpioc.crh, PinState::Low);
+        led.set_low();
 
         // Schedule the blinking task
         cx.schedule.blinker(cx.start + PERIOD.cycles()).unwrap();
@@ -59,10 +58,10 @@ const APP: () = {
         static mut LED_STATE: bool = false;
 
         if *LED_STATE {
-            cx.resources.led.set_high().unwrap();
+            cx.resources.led.set_high();
             *LED_STATE = false;
         } else {
-            cx.resources.led.set_low().unwrap();
+            cx.resources.led.set_low();
             *LED_STATE = true;
         }
         cx.schedule.blinker(cx.scheduled + PERIOD.cycles()).unwrap();
