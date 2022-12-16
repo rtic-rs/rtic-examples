@@ -46,7 +46,7 @@ const APP: () = {
             .into_push_pull_output_with_state(&mut gpioc.crh, PinState::Low);
         led.set_low();
 
-        // Schedule the blinking taskn
+        // Schedule the blinking task
         cx.schedule.blinker(cx.start + PERIOD.cycles()).unwrap();
 
         init::LateResources { led }
