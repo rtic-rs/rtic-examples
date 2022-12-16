@@ -7,7 +7,7 @@ version = "0.1.0"
 
 [dependencies]
 panic-halt = "0.2"
-panic-semihosting = "0.5"
+panic-semihosting = "0.6"
 cortex-m-semihosting = "0.5.0"
 embedded-hal = "0.2.3"
 cortex-m-rtic = "0.5.1"
