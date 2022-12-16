@@ -15,7 +15,7 @@ cortex-m-rtic = "0.5.1"
 cortex-m-semihosting = "0.5.0"
 
 [dependencies.nrf52832-hal]
-version = "0.8"
+version = "0.16"
 default-features = false
 features = [ "xxAA-package", "rt" ]
 
