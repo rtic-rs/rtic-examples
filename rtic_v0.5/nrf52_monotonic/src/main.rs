@@ -18,13 +18,13 @@ const APP: () = {
     #[init (spawn = [task1])]
     fn init(cx: init::Context) {
         Tim1::initialize(cx.device.TIMER1);
-        hprintln!("init").ok();
+        hprintln!("init");
         cx.spawn.task1().ok();
     }
 
     #[task(schedule = [task1])]
     fn task1(cx: task1::Context) {
-        hprintln!("here").ok();
+        hprintln!("here");
         cx.schedule.task1(cx.scheduled + 2000.millis()).ok();
     }
 
