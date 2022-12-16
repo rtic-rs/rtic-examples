@@ -15,7 +15,7 @@ usbd-hid = "0.4.4"
 rtt-target = { version = "0.2.2", features = ["cortex-m"] }
 panic-halt = "0.2.0"
 panic-rtt-target = { version = "0.1.1", features = ["cortex-m"] }
-cortex-m = "0.6.3"
-cortex-m-rtic = { version = "0.5.5" }
+cortex-m = "0.7.6"
+cortex-m-rtic = { version = "0.5.9", default-features = false, features = ["cortex-m-7"] }
 stm32f0xx-hal = { version = "0.17.1", features = ["rt", "stm32f042", "stm32-usbd"] }
 stm32-usbd = { version = "0.6.0" }
