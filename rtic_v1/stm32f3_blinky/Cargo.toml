@@ -14,7 +14,7 @@ rtt-target = { version = "0.3.1", features = ["cortex-m"] }
 
 [dependencies.stm32f3xx-hal]
 features = ["stm32f303xc", "rt"]
-version = "0.8.2"
+version = "0.9.1"
 
 # this lets you use `cargo fix`!
 [[bin]]
