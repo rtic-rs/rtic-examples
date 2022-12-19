@@ -12,7 +12,7 @@ branch = "main"
 embedded-hal = "0.2.4"
 usb-device = "0.2.5"
 usbd-hid = "0.4.4"
-rtt-target = { version = "0.2.2", features = ["cortex-m"] }
+rtt-target = { version = "0.3.1", features = ["cortex-m"] }
 panic-halt = "0.2.0"
 panic-rtt-target = { version = "0.1.1", features = ["cortex-m"] }
 cortex-m = "0.7.6"
