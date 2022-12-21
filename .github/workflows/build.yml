@@ -61,8 +61,8 @@ jobs:
 
 
   # Compilation
-  build:
-    name: build
+  buildv0_5:
+    name: build v0.5
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -78,7 +78,27 @@ jobs:
         run: cargo install flip-link
 
       - name: cargo build
-        run: find . -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
+        run: find rtic_v0.5 -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
+
+  # Compilation
+  buildv1:
+    name: build v1
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache Dependencies
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install all Rust targets
+        run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
+     
+      - name: Install flip-link
+        run: cargo install flip-link
+
+      - name: cargo build
+        run: find rtic_v1 -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
 
   check-dependabot-config:
     name: Ensure that `dependabot.yml` is up to date
@@ -102,7 +122,8 @@ jobs:
       - style
       - check
       - clippy
-      - build
+      - buildv0_5
+      - buildv1
       - check-dependabot-config
     runs-on: ubuntu-22.04
     steps:
