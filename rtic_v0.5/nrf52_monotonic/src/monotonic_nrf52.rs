@@ -1,12 +1,13 @@
 //! Using NRF52 as monotonic timer
 
+use crate::monotonic_nrf52::pac::TIMER1;
 use core::u32;
 use core::{
     cmp::Ordering,
     convert::{Infallible, TryInto},
     fmt, ops,
 };
-use nrf52832_hal::target;
+use nrf52832_hal::pac;
 use rtic::Monotonic;
 
 /// A measurement of the counter. Opaque and useful only with `Duration`
@@ -25,7 +26,7 @@ impl Instant {
     /// Returns an instant corresponding to "now"
     pub fn now() -> Self {
         let now = {
-            let timer = unsafe { &*target::TIMER1::ptr() };
+            let timer = unsafe { &*TIMER1::ptr() };
             timer.tasks_capture[0].write(|w| unsafe { w.bits(1) });
             timer.cc[0].read().bits()
         };
@@ -235,7 +236,7 @@ impl U32Ext for u32 {
 pub struct Tim1;
 
 impl Tim1 {
-    pub fn initialize(timer: target::TIMER1) {
+    pub fn initialize(timer: TIMER1) {
         // Auto restart, make sure the entire timer won't stop for any event
         timer.shorts.write(|w| {
             w.compare0_clear()
@@ -253,14 +254,6 @@ impl Tim1 {
                 .compare3_clear()
                 .enabled()
                 .compare3_stop()
-                .disabled()
-                .compare4_clear()
-                .enabled()
-                .compare4_stop()
-                .disabled()
-                .compare5_clear()
-                .enabled()
-                .compare5_stop()
                 .disabled()
         });
 
@@ -301,7 +294,7 @@ impl rtic::Monotonic for Tim1 {
     }
 
     unsafe fn reset() {
-        let timer = &*target::TIMER1::ptr();
+        let timer = &*TIMER1::ptr();
 
         // Clear the counter value
         timer.tasks_clear.write(|w| w.bits(1));
