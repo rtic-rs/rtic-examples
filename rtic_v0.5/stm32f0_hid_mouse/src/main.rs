@@ -3,6 +3,7 @@
 #![no_std]
 #![no_main]
 
+use cortex_m::interrupt::free as disable_interrupts;
 use panic_halt as _;
 use rtic::app;
 use rtic::{Exclusive, Mutex};
@@ -18,12 +19,11 @@ use stm32f0xx_hal::{
 };
 
 use usb_device::{bus::UsbBusAllocator, prelude::*};
+use usbd_hid::{
+    descriptor::{MouseReport, SerializedDescriptor},
+    hid_class::HIDClass,
+};
 
-use usbd_hid::descriptor::generator_prelude::*;
-use usbd_hid::descriptor::MouseReport;
-use usbd_hid::hid_class::HIDClass;
-
-use cortex_m::interrupt::free as disable_interrupts;
 
 #[app(device = stm32f0xx_hal::pac, peripherals = true)]
 const APP: () = {

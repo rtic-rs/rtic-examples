@@ -8,9 +8,9 @@
 use cortex_m::interrupt::free as disable_interrupts;
 use panic_halt as _;
 use rtic::app;
-use rtic::Exclusive;
-use rtic::Mutex;
+use rtic::{Exclusive, Mutex};
 use rtt_target::{rprintln, rtt_init_print};
+
 use stm32f0xx_hal::{
     gpio::gpioa::{PA0, PA1, PA15, PA2, PA3, PA4, PA5, PA6, PA7},
     gpio::gpiob::{PB1, PB3, PB4},
@@ -19,6 +19,7 @@ use stm32f0xx_hal::{
     prelude::*,
     usb,
 };
+
 use usb_device::{bus::UsbBusAllocator, prelude::*};
 use usbd_hid::{
     descriptor::{MouseReport, SerializedDescriptor},
@@ -52,7 +53,7 @@ mod app {
         bbled_wht: PA3<Output<PushPull>>,
     }
 
-    #[init]
+    #[init(local = [USB_BUS: Option<UsbBusAllocator<usb::UsbBusType>> = None])]
     fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
         // RTT handler
         rtt_init_print!();
@@ -154,26 +155,21 @@ mod app {
         };
 
         rprintln!("Preparing HID mouse...");
-        static mut USB_BUS: Option<UsbBusAllocator<usb::UsbBusType>> = None;
-        unsafe {
-            USB_BUS = Some(usb::UsbBus::new(usb));
-        };
-        let usb_hid = HIDClass::new(
-            unsafe { USB_BUS.as_ref().unwrap() },
-            MouseReport::desc(),
-            60,
-        );
+
+        let usb_bus = ctx.local.USB_BUS;
+        *usb_bus = Some(usb::UsbBus::new(usb));
+
+        let usb_hid = HIDClass::new(usb_bus.as_ref().unwrap(), MouseReport::desc(), 60);
 
         rprintln!("Defining USB parameters...");
-        let usb_device =
-            UsbDeviceBuilder::new(unsafe { USB_BUS.as_ref().unwrap() }, UsbVidPid(0, 0x3821))
-                .manufacturer("JoshFTW")
-                .product("BBTrackball")
-                .serial_number("RustFW")
-                .device_class(0x00)
-                .device_sub_class(0x00)
-                .device_protocol(0x00)
-                .build();
+        let usb_device = UsbDeviceBuilder::new(usb_bus.as_ref().unwrap(), UsbVidPid(0, 0x3821))
+            .manufacturer("JoshFTW")
+            .product("BBTrackball")
+            .serial_number("RustFW")
+            .device_class(0x00)
+            .device_sub_class(0x00)
+            .device_protocol(0x00)
+            .build();
 
         rprintln!("Instantiating dp.EXTI...");
         let exti = dp.EXTI;
