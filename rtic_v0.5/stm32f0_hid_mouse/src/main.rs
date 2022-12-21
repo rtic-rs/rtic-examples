@@ -221,31 +221,31 @@ const APP: () = {
             0x8000 => {
                 rprintln!("PA15 triggered");
                 ctx.resources.exti.pr.write(|w| w.pif15().set_bit()); // Clear interrupt
-                send_mouse_report(Exclusive(hid), 0, 0, 1);
+                send_mouse_report(Exclusive(hid), 0, 0, 1, 0, 0);
                 usr_led.toggle().ok();
             }
             0x10 => {
                 rprintln!("tb_left triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif4().set_bit());
-                send_mouse_report(Exclusive(hid), 5, 0, 0);
+                send_mouse_report(Exclusive(hid), 5, 0, 0, 0, 0);
                 usr_led.toggle().ok();
             }
             0x20 => {
                 rprintln!("tb_up triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif5().set_bit());
-                send_mouse_report(Exclusive(hid), 0, 5, 0);
+                send_mouse_report(Exclusive(hid), 0, 5, 0, 0, 0);
                 usr_led.toggle().ok();
             }
             0x40 => {
                 rprintln!("tb_right triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif6().set_bit());
-                send_mouse_report(Exclusive(hid), -5, 0, 0);
+                send_mouse_report(Exclusive(hid), -5, 0, 0, 0, 0);
                 usr_led.toggle().ok();
             }
             0x80 => {
                 rprintln!("tb_down triggered!");
                 ctx.resources.exti.pr.write(|w| w.pif7().set_bit());
-                send_mouse_report(Exclusive(hid), 0, -5, 0);
+                send_mouse_report(Exclusive(hid), 0, -5, 0, 0, 0);
                 usr_led.toggle().ok();
             }
 
@@ -270,8 +270,16 @@ fn send_mouse_report(
     x: i8,
     y: i8,
     buttons: u8,
+    wheel: i8,
+    pan: i8,
 ) {
-    let mr = MouseReport { x, y, buttons };
+    let mr = MouseReport {
+        x,
+        y,
+        buttons,
+        wheel,
+        pan,
+    };
 
     shared_hid.lock(|hid| {
         rprintln!("Sending mouse report...");
