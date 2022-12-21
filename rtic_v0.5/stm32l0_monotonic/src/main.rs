@@ -7,8 +7,7 @@ use core::fmt::Write;
 
 use panic_halt as _;
 use rtic::app;
-use stm32l0xx_hal::prelude::*;
-use stm32l0xx_hal::{pac, rcc::Config, serial};
+use stm32l0xx_hal::{pac, prelude::*, rcc::Config, serial};
 
 use crate::monotonic_stm32l0::{Duration, Instant, Tim6Monotonic, U16Ext};
 

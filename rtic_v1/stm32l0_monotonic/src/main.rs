@@ -1,15 +1,18 @@
 #![no_main]
 #![no_std]
 
-use panic_rtt_target as _;
-
 mod monotonic_stm32l0;
+
 use core::fmt::Write;
-use embedded_time::rate::Baud;
-use monotonic_stm32l0::{Duration, Instant, Tim6Monotonic, U16Ext};
-use rtic::app;
+
+use panic_rtt_target as _;
 use rtt_target::{rprintln, rtt_init_print};
+
+use embedded_time::rate::Baud;
+use rtic::app;
 use stm32l0xx_hal::{pac, prelude::*, rcc::Config, serial};
+
+use monotonic_stm32l0::{Duration, Instant, Tim6Monotonic, U16Ext};
 
 const INTERVAL_MS: u16 = 500;
 
