@@ -24,7 +24,6 @@ use usbd_hid::{
     hid_class::HIDClass,
 };
 
-
 #[app(device = stm32f0xx_hal::pac, peripherals = true)]
 const APP: () = {
     struct Resources {
