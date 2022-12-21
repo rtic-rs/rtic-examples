@@ -8,7 +8,7 @@ use core::fmt::Write;
 use panic_halt as _;
 use rtic::app;
 use stm32l0xx_hal::prelude::*;
-use stm32l0xx_hal::{pac, rcc::Config, serial, time};
+use stm32l0xx_hal::{pac, rcc::Config, serial};
 
 use crate::monotonic_stm32l0::{Duration, Instant, Tim6Monotonic, U16Ext};
 
@@ -45,7 +45,7 @@ const APP: () = {
             gpiob.pb6.into_floating_input(),
             gpiob.pb7.into_floating_input(),
             serial::Config {
-                baudrate: time::Bps(57_600),
+                baudrate: 57_600.Bd(),
                 wordlength: serial::WordLength::DataBits8,
                 parity: serial::Parity::ParityNone,
                 stopbits: serial::StopBits::STOP1,

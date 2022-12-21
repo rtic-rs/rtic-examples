@@ -9,9 +9,9 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-cortex-m-rtic = "0.5.1"
+cortex-m-rtic = { version = "0.5.9", default-features = false, features = ["cortex-m-7"] }
 panic-halt = { version = "0.2.0" }
-stm32l0xx-hal = { version = "0.6", features = ["rt", "mcu-STM32L071KBTx"] }
+stm32l0xx-hal = { version = "0.9", features = ["rt", "mcu-STM32L071KBTx"] }
 
 # this lets you use `cargo fix`!
 [[bin]]
