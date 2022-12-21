@@ -38,6 +38,10 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "cargo"
+    directory: "/rtic_v1/stm32f0_hid_mouse"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f1_bluepill_blinky"
     schedule:
       interval: "weekly"
