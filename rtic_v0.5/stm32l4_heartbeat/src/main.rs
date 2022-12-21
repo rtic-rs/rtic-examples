@@ -38,7 +38,11 @@ const APP: () = {
         // Setup clocks
         let mut flash = cx.device.FLASH.constrain();
         let mut rcc = cx.device.RCC.constrain();
-        let _clocks = rcc.cfgr.sysclk(CLK_SPEED_MHZ.mhz()).freeze(&mut flash.acr);
+        let mut pwr = cx.device.PWR.constrain(&mut rcc.apb1r1);
+        let _clocks = rcc
+            .cfgr
+            .sysclk(CLK_SPEED_MHZ.mhz())
+            .freeze(&mut flash.acr, &mut pwr);
 
         // Setup LED
         let mut gpiob = cx.device.GPIOB.split(&mut rcc.ahb2);
