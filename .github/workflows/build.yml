@@ -14,18 +14,10 @@ jobs:
   # Run cargo fmt --check
   style:
     name: style
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          default: true
-          components: rustfmt
 
       - name: Install all Rust targets
         run: rustup target install thumbv6m-none-eabi thumbv7m-none-eabi thumbv7em-none-eabihf
@@ -36,18 +28,10 @@ jobs:
   # Compilation check
   check:
     name: check
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          default: true
-          components: rustfmt
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
@@ -61,17 +45,10 @@ jobs:
   # Clippy
   clippy:
     name: Cargo clippy
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install Rust stable
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          target: x86_64-unknown-linux-gnu
-          override: true
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
@@ -86,18 +63,10 @@ jobs:
   # Compilation
   build:
     name: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          default: true
-          components: rustfmt
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
@@ -113,7 +82,7 @@ jobs:
 
   check-dependabot-config:
     name: Ensure that `dependabot.yml` is up to date
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -135,7 +104,7 @@ jobs:
       - clippy
       - build
       - check-dependabot-config
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Mark the job as a success
         run: exit 0
