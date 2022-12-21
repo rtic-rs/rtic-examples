@@ -13,7 +13,7 @@ use cortex_m_semihosting::hprintln;
 use panic_semihosting as _;
 use rtic::app;
 
-#[app(device = nrf52832_hal::target, peripherals = true, monotonic = crate::monotonic_nrf52::Tim1)]
+#[app(device = nrf52832_hal::pac, peripherals = true, monotonic = crate::monotonic_nrf52::Tim1)]
 const APP: () = {
     #[init (spawn = [task1])]
     fn init(cx: init::Context) {
