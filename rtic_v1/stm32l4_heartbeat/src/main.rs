@@ -7,7 +7,7 @@ use heapless::Vec;
 use panic_rtt_target as _;
 use rtic::app;
 use rtt_target::{rprintln, rtt_init_print};
-use stm32l4xx_hal::gpio::{gpiob::PB3, Output, PushPull, State};
+use stm32l4xx_hal::gpio::{gpiob::PB3, Output, PushPull};
 use stm32l4xx_hal::prelude::*;
 use systick_monotonic::{fugit::Duration, Systick};
 
@@ -38,15 +38,14 @@ mod app {
         rtt_init_print!();
         rprintln!("init");
 
-        let _clocks = rcc.cfgr.sysclk(72.mhz()).freeze(&mut flash.acr, &mut pwr);
+        let _clocks = rcc.cfgr.sysclk(72.MHz()).freeze(&mut flash.acr, &mut pwr);
 
         // Setup LED
         let mut gpiob = cx.device.GPIOB.split(&mut rcc.ahb2);
-        let led = gpiob.pb3.into_push_pull_output_with_state(
-            &mut gpiob.moder,
-            &mut gpiob.otyper,
-            State::Low,
-        );
+        let mut led = gpiob
+            .pb3
+            .into_push_pull_output(&mut gpiob.moder, &mut gpiob.otyper);
+        led.set_low();
 
         // Simple heart beat LED on/off sequence
         let mut intervals: Vec<u32, 6> = Vec::new();
@@ -76,16 +75,11 @@ mod app {
         let duration = cx.local.intervals[state];
         let next_state = (state + 1) % cx.local.intervals.len();
 
-        if state % 2 == 0 {
-            cx.local.led.set_high().unwrap();
-        } else {
-            cx.local.led.set_low().unwrap();
-        }
+        cx.local.led.toggle();
 
-        blink::spawn_after(
+        let _ = blink::spawn_after(
             Duration::<u64, 1, 1000>::from_ticks(duration as u64),
             next_state,
-        )
-        .unwrap();
+        );
     }
 }
