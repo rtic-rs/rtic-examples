@@ -3,7 +3,6 @@
 #![no_main]
 #![no_std]
 
-use heapless::Vec;
 use panic_rtt_target as _;
 use rtic::app;
 use rtt_target::{rprintln, rtt_init_print};
@@ -21,7 +20,7 @@ mod app {
     #[local]
     struct Local {
         led: PB3<Output<PushPull>>,
-        intervals: Vec<u32, 6>,
+        intervals: [u32; 6],
     }
 
     #[monotonic(binds = SysTick, default = true)]
@@ -48,13 +47,14 @@ mod app {
         led.set_low();
 
         // Simple heart beat LED on/off sequence
-        let mut intervals: Vec<u32, 6> = Vec::new();
-        intervals.push(30).unwrap(); // P Wave
-        intervals.push(40).unwrap(); // PR Segment
-        intervals.push(120).unwrap(); // QRS Complex
-        intervals.push(30).unwrap(); // ST Segment
-        intervals.push(60).unwrap(); // T Wave
-        intervals.push(720).unwrap(); // Rest
+        let intervals: [u32; 6] = [
+            30,  // P Wave
+            40,  // PR Segment
+            120, // QRS Complex
+            30,  // ST Segment
+            60,  // T Wave
+            720, // Rest
+        ];
 
         // Schedule the blinking task
         blink::spawn(0).unwrap();
