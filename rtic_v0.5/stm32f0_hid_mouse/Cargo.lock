@@ -133,7 +133,7 @@ dependencies = [
 [[package]]
 name = "defmt"
 version = "0.3.2"
-source = "git+https://github.com/knurling-rs/defmt?branch=main#ec8ae6b7e4ec8414c33e6791d50f48526794cfb3"
+source = "git+https://github.com/knurling-rs/defmt?branch=main#0cb72e6d362ab040739559da32b68733bce7589f"
 dependencies = [
  "bitflags",
  "defmt-macros",
@@ -142,7 +142,7 @@ dependencies = [
 [[package]]
 name = "defmt-macros"
 version = "0.3.3"
-source = "git+https://github.com/knurling-rs/defmt?branch=main#ec8ae6b7e4ec8414c33e6791d50f48526794cfb3"
+source = "git+https://github.com/knurling-rs/defmt?branch=main#0cb72e6d362ab040739559da32b68733bce7589f"
 dependencies = [
  "defmt-parser",
  "proc-macro-error",
@@ -154,7 +154,7 @@ dependencies = [
 [[package]]
 name = "defmt-parser"
 version = "0.3.1"
-source = "git+https://github.com/knurling-rs/defmt?branch=main#ec8ae6b7e4ec8414c33e6791d50f48526794cfb3"
+source = "git+https://github.com/knurling-rs/defmt?branch=main#0cb72e6d362ab040739559da32b68733bce7589f"
 
 [[package]]
 name = "embedded-hal"
