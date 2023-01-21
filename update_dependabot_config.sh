@@ -16,5 +16,6 @@ for fld in $(find . -type f -name Cargo.toml | sort | sed 's#/Cargo.toml##' | se
     directory: "${fld}"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
 EOF
 done
