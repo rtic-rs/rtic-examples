@@ -76,6 +76,11 @@ updates:
       interval: "weekly"
     rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
+    directory: "/rtic_v1/stm32l0_monotonic"
+    schedule:
+      interval: "weekly"
+    rebase-strategy: "disabled"
+  - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32l4_heartbeat"
     schedule:
       interval: "weekly"
