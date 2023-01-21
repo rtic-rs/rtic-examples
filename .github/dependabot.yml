@@ -9,59 +9,74 @@ updates:
     directory: "/rtic_v0.5/nrf52_monotonic"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v0.5/stm32f0_hid_mouse"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v0.5/stm32f1_bluepill_blinky"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v0.5/stm32f3_blinky"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v0.5/stm32l0_monotonic"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v0.5/stm32l4_heartbeat"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/nrf52_monotonic"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/rp-pico_local_initilzd_resources"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f0_hid_mouse"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f1_bluepill_blinky"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f3_blinky"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f411_edge_counter"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f4_independent_watchdog"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32f4_pwm_monitor"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
   - package-ecosystem: "cargo"
     directory: "/rtic_v1/stm32l4_heartbeat"
     schedule:
       interval: "weekly"
+    rebase-strategy: "disabled"
