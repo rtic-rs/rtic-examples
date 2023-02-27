@@ -85,15 +85,16 @@ checksum = "70858629a458fdfd39f9675c4dc309411f2a3f83bede76988d81bf1a0ecee9e0"
 dependencies = [
  "bare-metal 0.2.5",
  "bitfield",
+ "critical-section",
  "embedded-hal",
  "volatile-register",
 ]
 
 [[package]]
 name = "cortex-m-rt"
-version = "0.7.2"
+version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d6d3328b8b5534f0c90acd66b68950f2763b37e0173cac4d8b4937c4a80761f9"
+checksum = "ee84e813d593101b1723e13ec38b6ab6abbdbaaa4546553f5395ed274079ddb1"
 dependencies = [
  "cortex-m-rt-macros",
 ]
@@ -583,9 +584,9 @@ dependencies = [
 
 [[package]]
 name = "stm32f3xx-hal"
-version = "0.9.1"
+version = "0.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4e422c5c044e8f3a068b1e14b83c071449e27c9d4bc0e24f972b552d79f2be03"
+checksum = "4c9d827f02df3826371c897404dfbea8a1abd544eed9d6cdc3e5f6e9f04b9e06"
 dependencies = [
  "bare-metal 1.0.0",
  "bxcan",
