@@ -5,7 +5,7 @@ authors = ["Rafael Bachmann <rafael.bachmann.93@gmail.com"]
 edition = "2021"
 
 [dependencies]
-cortex-m-rtic = "1.0.0"
+cortex-m-rtic = "1.1.4"
 systick-monotonic = "1.0.0"
 
 [dependencies.rtt-target]
