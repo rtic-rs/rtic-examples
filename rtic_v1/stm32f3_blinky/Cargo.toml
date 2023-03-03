@@ -7,14 +7,14 @@ version = "0.1.0"
 
 [dependencies]
 embedded-hal = "0.2.6"
-cortex-m-rtic = "1.0.0"
+cortex-m-rtic = "1.1.4"
 systick-monotonic = "1.0.0"
 panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
 rtt-target = { version = "0.3.1", features = ["cortex-m"] }
 
 [dependencies.stm32f3xx-hal]
 features = ["stm32f303xc", "rt"]
-version = "0.9.1"
+version = "0.9.2"
 
 # this lets you use `cargo fix`!
 [[bin]]
