@@ -6,7 +6,7 @@
 use panic_rtt_target as _;
 use rtic::app;
 use rtt_target::{rprintln, rtt_init_print};
-use stm32f3xx_hal::gpio::{Output, PushPull, PE10};
+use stm32f3xx_hal::gpio::{Output, PushPull, PA5};
 use stm32f3xx_hal::prelude::*;
 use systick_monotonic::{fugit::Duration, Systick};
 
@@ -19,7 +19,7 @@ mod app {
 
     #[local]
     struct Local {
-        led: PE10<Output<PushPull>>,
+        led: PA5<Output<PushPull>>,
         state: bool,
     }
 
@@ -45,10 +45,10 @@ mod app {
             .freeze(&mut flash.acr);
 
         // Setup LED
-        let mut gpioe = cx.device.GPIOE.split(&mut rcc.ahb);
-        let mut led = gpioe
-            .pe10
-            .into_push_pull_output(&mut gpioe.moder, &mut gpioe.otyper);
+        let mut gpioa = cx.device.GPIOA.split(&mut rcc.ahb);
+        let mut led = gpioa
+            .pa5
+            .into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
         led.set_high().unwrap();
 
         // Schedule the blinking task

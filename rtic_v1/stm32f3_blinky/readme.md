@@ -1,6 +1,6 @@
 # STM32F3 RTIC Blink example
 
-Working example of simple LED blinking application for STM32 F3 Discovery boards based on the STM32F303VC chip. Example uses schedule API and peripherials access. This example is based on blue-pill blinky example.
+Working example of simple LED blinking application for STM32 F303 Nucleo-64 board based on the STM32F303RE chip. Example uses schedule API and peripherials access. This example is based on blue-pill blinky example.
 
 ## How-to
 
