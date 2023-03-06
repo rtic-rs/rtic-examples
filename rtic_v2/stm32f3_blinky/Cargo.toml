@@ -9,8 +9,6 @@ version = "0.1.0"
 embedded-hal = "0.2.7"
 rtic = { git = "https://github.com/rtic-rs/rtic", features = ["thumbv7-backend"] }
 rtic-monotonics = { git = "https://github.com/rtic-rs/rtic", features = ["cortex-m-systick"] }
-#cortex-m-rtic = "1.1.4"
-systick-monotonic = "1.0.1"
 panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
 rtt-target = { version = "0.3.1", features = ["cortex-m"] }
 
