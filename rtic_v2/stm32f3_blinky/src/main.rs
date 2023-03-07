@@ -2,17 +2,20 @@
 #![deny(warnings)]
 #![no_main]
 #![no_std]
+#![feature(type_alias_impl_trait)]
 
 use panic_rtt_target as _;
 use rtic::app;
+use rtic_monotonics::systick::*;
 use rtt_target::{rprintln, rtt_init_print};
 use stm32f3xx_hal::gpio::{Output, PushPull, PA5};
 use stm32f3xx_hal::prelude::*;
-use systick_monotonic::{fugit::Duration, Systick};
 
 #[app(device = stm32f3xx_hal::pac, peripherals = true, dispatchers = [SPI1])]
 mod app {
     use super::*;
+
+    rtic_monotonics::make_systick_handler!();
 
     #[shared]
     struct Shared {}
@@ -23,16 +26,13 @@ mod app {
         state: bool,
     }
 
-    #[monotonic(binds = SysTick, default = true)]
-    type MonoTimer = Systick<1000>;
-
     #[init]
-    fn init(cx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(cx: init::Context) -> (Shared, Local) {
         // Setup clocks
         let mut flash = cx.device.FLASH.constrain();
         let mut rcc = cx.device.RCC.constrain();
 
-        let mono = Systick::new(cx.core.SYST, 36_000_000);
+        Systick::start(cx.core.SYST, 36_000_000); // default STM32F303 clock-rate is 36MHz
 
         rtt_init_print!();
         rprintln!("init");
@@ -52,25 +52,23 @@ mod app {
         led.set_high().unwrap();
 
         // Schedule the blinking task
-        blink::spawn_after(Duration::<u64, 1, 1000>::from_ticks(1000)).unwrap();
+        blink::spawn().ok();
 
-        (
-            Shared {},
-            Local { led, state: false },
-            init::Monotonics(mono),
-        )
+        (Shared {}, Local { led, state: false })
     }
 
     #[task(local = [led, state])]
-    fn blink(cx: blink::Context) {
-        rprintln!("blink");
-        if *cx.local.state {
-            cx.local.led.set_high().unwrap();
-            *cx.local.state = false;
-        } else {
-            cx.local.led.set_low().unwrap();
-            *cx.local.state = true;
+    async fn blink(cx: blink::Context) {
+        loop {
+            rprintln!("blink");
+            if *cx.local.state {
+                cx.local.led.set_high().unwrap();
+                *cx.local.state = false;
+            } else {
+                cx.local.led.set_low().unwrap();
+                *cx.local.state = true;
+            }
+            Systick::delay(1000.millis()).await;
         }
-        blink::spawn_after(Duration::<u64, 1, 1000>::from_ticks(1000)).unwrap();
     }
 }

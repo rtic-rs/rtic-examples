@@ -85,3 +85,13 @@ updates:
     schedule:
       interval: "weekly"
     rebase-strategy: "disabled"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v2/rp2040_local_i2c_init"
+    schedule:
+      interval: "weekly"
+    rebase-strategy: "disabled"
+  - package-ecosystem: "cargo"
+    directory: "/rtic_v2/stm32f3_blinky"
+    schedule:
+      interval: "weekly"
+    rebase-strategy: "disabled"
