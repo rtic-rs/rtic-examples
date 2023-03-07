@@ -21,11 +21,11 @@ mod app {
     use core::mem::MaybeUninit;
     use embedded_hal::digital::v2::{OutputPin, ToggleableOutputPin};
     use fugit::RateExtU32;
-    use rtic_monotonics::systick::*;
+    use rtic_monotonics::rp2040::*;
 
     use panic_probe as _;
 
-    rtic_monotonics::make_systick_handler!();
+    rtic_monotonics::make_rp2040_monotonic_handler!();
 
     type I2CBus = I2C<
         pac::I2C1,
@@ -52,7 +52,7 @@ mod app {
     ])]
     fn init(mut ctx: init::Context) -> (Shared, Local) {
         // Configure the clocks, watchdog - The default is to generate a 125 MHz system clock
-        Systick::start(ctx.core.SYST, 125_000_000); // default rp2040 clock-rate is 125MHz
+        Timer::start(ctx.device.TIMER, &mut ctx.device.RESETS); // default rp2040 clock-rate is 125MHz
         let mut watchdog = Watchdog::new(ctx.device.WATCHDOG);
         let clocks = clocks::init_clocks_and_plls(
             XOSC_CRYSTAL_FREQ,
@@ -109,6 +109,6 @@ mod app {
         // now to do something with it!
 
         // Re-spawn this task after 1 second
-        Systick::delay(1000.millis()).await;
+        Timer::delay(1000.millis()).await;
     }
 }

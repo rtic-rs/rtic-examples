@@ -8,8 +8,12 @@ edition = "2021"
 
 [dependencies]
 cortex-m = "0.7"
-rtic = { git = "https://github.com/rtic-rs/rtic", features = ["thumbv6-backend"] }
-rtic-monotonics = { git = "https://github.com/rtic-rs/rtic", features = ["cortex-m-systick", "rp2040"] }
+rtic = { git = "https://github.com/rtic-rs/rtic", features = [
+  "thumbv6-backend",
+] }
+rtic-monotonics = { git = "https://github.com/rtic-rs/rtic", features = [
+  "rp2040",
+] }
 embedded-hal = { version = "0.2.7", features = ["unproven"] }
 fugit = "0.3"
 rp-pico = "0.7.0"
