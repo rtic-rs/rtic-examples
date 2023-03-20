@@ -398,7 +398,7 @@ dependencies = [
 [[package]]
 name = "rtic"
 version = "2.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#7c7d6558f6d9c50fbb4d2487c98c9a5be15f2f7b"
+source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
 dependencies = [
  "atomic-polyfill",
  "bare-metal 1.0.0",
@@ -411,7 +411,7 @@ dependencies = [
 [[package]]
 name = "rtic-common"
 version = "1.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#7c7d6558f6d9c50fbb4d2487c98c9a5be15f2f7b"
+source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
 dependencies = [
  "critical-section",
 ]
@@ -425,7 +425,7 @@ checksum = "d9369355b04d06a3780ec0f51ea2d225624db777acbc60abd8ca4832da5c1a42"
 [[package]]
 name = "rtic-macros"
 version = "2.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#7c7d6558f6d9c50fbb4d2487c98c9a5be15f2f7b"
+source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
 dependencies = [
  "indexmap",
  "proc-macro-error",
@@ -437,7 +437,7 @@ dependencies = [
 [[package]]
 name = "rtic-monotonics"
 version = "1.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#7c7d6558f6d9c50fbb4d2487c98c9a5be15f2f7b"
+source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
 dependencies = [
  "atomic-polyfill",
  "cfg-if",
@@ -449,7 +449,7 @@ dependencies = [
 [[package]]
 name = "rtic-time"
 version = "1.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#7c7d6558f6d9c50fbb4d2487c98c9a5be15f2f7b"
+source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
 dependencies = [
  "critical-section",
  "futures-util",
