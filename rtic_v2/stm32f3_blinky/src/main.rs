@@ -15,8 +15,6 @@ use stm32f3xx_hal::prelude::*;
 mod app {
     use super::*;
 
-    rtic_monotonics::make_systick_handler!();
-
     #[shared]
     struct Shared {}
 
@@ -32,7 +30,8 @@ mod app {
         let mut flash = cx.device.FLASH.constrain();
         let mut rcc = cx.device.RCC.constrain();
 
-        Systick::start(cx.core.SYST, 36_000_000); // default STM32F303 clock-rate is 36MHz
+        let token = rtic_monotonics::create_systick_token!();
+        Systick::start(cx.core.SYST, 36_000_000, token); // default STM32F303 clock-rate is 36MHz
 
         rtt_init_print!();
         rprintln!("init");
