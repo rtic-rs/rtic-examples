@@ -210,21 +210,21 @@ dependencies = [
 
 [[package]]
 name = "futures-core"
-version = "0.3.27"
+version = "0.3.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "86d7a0c1aa76363dac491de0ee99faf6941128376f1cf96f07db7603b7de69dd"
+checksum = "4bca583b7e26f571124fe5b7561d49cb2868d79116cfa0eefce955557c6fee8c"
 
 [[package]]
 name = "futures-task"
-version = "0.3.27"
+version = "0.3.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd65540d33b37b16542a0438c12e6aeead10d4ac5d05bd3f805b8f35ab592879"
+checksum = "76d3d132be6c0e6aa1534069c705a74a5997a356c0dc2f86a47765e5617c5b65"
 
 [[package]]
 name = "futures-util"
-version = "0.3.27"
+version = "0.3.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3ef6b17e481503ec85211fed8f39d1970f128935ca1f814cd32ac4a6842e84ab"
+checksum = "26b01e40b772d54cf6c6d721c1d1abd0647a0106a12ecaa1c186273392a69533"
 dependencies = [
  "futures-core",
  "futures-task",
@@ -420,7 +420,7 @@ dependencies = [
 [[package]]
 name = "rtic"
 version = "2.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
+source = "git+https://github.com/rtic-rs/rtic#064cf19265f72d7f01e0847c545e6250391a2172"
 dependencies = [
  "atomic-polyfill",
  "bare-metal 1.0.0",
@@ -433,7 +433,7 @@ dependencies = [
 [[package]]
 name = "rtic-common"
 version = "1.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
+source = "git+https://github.com/rtic-rs/rtic#064cf19265f72d7f01e0847c545e6250391a2172"
 dependencies = [
  "critical-section",
 ]
@@ -447,7 +447,7 @@ checksum = "d9369355b04d06a3780ec0f51ea2d225624db777acbc60abd8ca4832da5c1a42"
 [[package]]
 name = "rtic-macros"
 version = "2.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
+source = "git+https://github.com/rtic-rs/rtic#064cf19265f72d7f01e0847c545e6250391a2172"
 dependencies = [
  "indexmap",
  "proc-macro-error",
@@ -459,7 +459,7 @@ dependencies = [
 [[package]]
 name = "rtic-monotonics"
 version = "1.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
+source = "git+https://github.com/rtic-rs/rtic#064cf19265f72d7f01e0847c545e6250391a2172"
 dependencies = [
  "atomic-polyfill",
  "cfg-if",
@@ -471,7 +471,7 @@ dependencies = [
 [[package]]
 name = "rtic-time"
 version = "1.0.0-alpha.0"
-source = "git+https://github.com/rtic-rs/rtic#3a0e2ac92438c818f7f12d894c576de9af9fcc01"
+source = "git+https://github.com/rtic-rs/rtic#064cf19265f72d7f01e0847c545e6250391a2172"
 dependencies = [
  "critical-section",
  "futures-util",
