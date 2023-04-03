@@ -132,9 +132,9 @@ dependencies = [
 
 [[package]]
 name = "defmt"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d3a0ae7494d9bff013d7b89471f4c424356a71e9752e0c78abe7e6c608a16bb3"
+checksum = "d03193cde597714ff8a5005ccd61cd1b7aff5616eaca7c67905982cb6f347ff4"
 dependencies = [
  "bitflags",
  "defmt-macros",
