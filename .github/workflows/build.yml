@@ -39,18 +39,12 @@ jobs:
         rticversion:
           - v0.5
           - v1
-          - v2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
-
-      - name: Install Rust nightly
-        run: |
-          rustup toolchain install nightly
-          rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
 
       - name: Configure Rust target (v6, v7, v8.b v8.m)
         run: |
@@ -64,12 +58,7 @@ jobs:
         run: cargo install flip-link
 
       - name: cargo check
-        if: ${{ matrix.rticversion != 'v2' }}
         run: find rtic_${{ matrix.rticversion }} -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
-
-      - name: cargo check
-        if: ${{ matrix.rticversion == 'v2' }}
-        run: find rtic_${{ matrix.rticversion }} -type f -name Cargo.toml -execdir cargo +nightly build --release --manifest-path {} +
 
   # Clippy
   clippy:
@@ -80,7 +69,6 @@ jobs:
         rticversion:
           - v0.5
           - v1
-          - v2
 
     steps:
       - name: Checkout
@@ -88,12 +76,6 @@ jobs:
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
-
-      - name: Install Rust nightly
-        run: |
-          rustup toolchain install nightly
-          rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
-          rustup component add clippy --toolchain nightly-x86_64-unknown-linux-gnu
 
       - name: Configure Rust target (v6, v7, v8.b v8.m)
         run: |
@@ -104,13 +86,7 @@ jobs:
           rustup target add thumbv8m.main-none-eabi
 
       - name: cargo clippy
-        if: ${{ matrix.rticversion != 'v2' }}
         run: find rtic_${{ matrix.rticversion }} -type f -name Cargo.toml -execdir cargo clippy --target-dir /tmp/build --manifest-path {} +
-
-      - name: cargo clippy
-        if: ${{ matrix.rticversion == 'v2' }}
-        run: find rtic_${{ matrix.rticversion }} -type f -name Cargo.toml -execdir cargo +nightly clippy --target-dir /tmp/build --manifest-path {} +
-
 
   # Compilation
   build:
@@ -121,18 +97,12 @@ jobs:
         rticversion:
           - v0.5
           - v1
-          - v2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
-
-      - name: Install Rust nightly
-        run: |
-          rustup toolchain install nightly
-          rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
 
       - name: Configure Rust target (v6, v7, v8.b v8.m)
         run: |
@@ -146,12 +116,7 @@ jobs:
         run: cargo install flip-link
 
       - name: cargo build
-        if: ${{ matrix.rticversion != 'v2' }}
         run: find rtic_${{ matrix.rticversion }} -type f -name Cargo.toml -execdir cargo build --release --manifest-path {} +
-
-      - name: cargo build
-        if: ${{ matrix.rticversion == 'v2' }}
-        run: find rtic_${{ matrix.rticversion }} -type f -name Cargo.toml -execdir cargo +nightly build --release --manifest-path {} +
 
   check-dependabot-config:
     name: Ensure that `dependabot.yml` is up to date
