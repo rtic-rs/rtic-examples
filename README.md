@@ -1,6 +1,8 @@
 # `RTIC examples`
 
-> Here you can find examples on different aspects of the RTIC scheduler.
+> Here you can find examples on different aspects of the RTIC scheduler for older versions fo the framework.
+
+> To see examples for the Latest Version of RTIC, see the [main repo](https://github.com/rtic-rs/rtic).
 
 ## Structure
 
