@@ -346,7 +346,7 @@ dependencies = [
  "cortex-m",
  "cortex-m-rt",
  "fugit",
- "rp2040-boot2",
+ "rp2040-boot2 0.2.1",
  "rp2040-hal",
  "usb-device",
 ]
@@ -362,7 +362,7 @@ dependencies = [
  "fugit",
  "panic-probe",
  "rp-pico",
- "rp2040-boot2",
+ "rp2040-boot2 0.3.0",
  "rp2040-monotonic",
 ]
 
@@ -371,6 +371,15 @@ name = "rp2040-boot2"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3c773ec49b836077aa144b58dc7654a243e1eecdb6cf0d25361ae7c7600fabd8"
+dependencies = [
+ "crc-any",
+]
+
+[[package]]
+name = "rp2040-boot2"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7c92f344f63f950ee36cf4080050e4dce850839b9175da38f9d2ffb69b4dbb21"
 dependencies = [
  "crc-any",
 ]
