@@ -9,20 +9,14 @@ use panic_rtt_target as _panic_handler;
 mod tim8;
 
 /* declare the RTIC application itself */
-#[rtic::app(device = stm32f4xx_hal::stm32, peripherals = true)]
+#[rtic::app(device = stm32f4xx_hal::pac, peripherals = true)]
 mod app {
 
     /* bring dependencies into scope */
     use rtt_target::{rprintln, rtt_init_print};
-    use stm32f4xx_hal::{
-        gpio::{gpioc::PC6, Alternate},
-        prelude::*,
-        pwm_input::PwmInput,
-        stm32::TIM8,
-        timer::Timer,
-    };
+    use stm32f4xx_hal::{pac::TIM8, prelude::*, timer::PwmInput, timer::Timer};
     /// PWM input monitor type
-    pub(crate) type PwmMonitor = PwmInput<TIM8, PC6<Alternate<3>>>;
+    pub(crate) type PwmMonitor = PwmInput<TIM8>;
 
     /* resources shared across RTIC tasks */
     #[shared]
@@ -58,7 +52,7 @@ mod app {
         // This requires a "best guess" of the input frequency in order to be accurate.
         // Note: as a side-effect TIM8's interrupt is enabled and fires whenever a capture-compare
         //      cycle is complete. See the reference manual's paragraphs on PWM Input.
-        let monitor = Timer::new(ctx.device.TIM8, &clocks).pwm_input(240.hz(), tim8_cc1);
+        let monitor = Timer::new(ctx.device.TIM8, &clocks).pwm_input(240.Hz(), tim8_cc1);
 
         // lastly return the shared and local resources, as per RTIC's spec.
         (

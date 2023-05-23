@@ -11,10 +11,10 @@ mod app {
     use core::sync::atomic::{AtomicUsize, Ordering};
     use rtt_target::{rprintln, rtt_init_print};
     use stm32f4xx_hal::{
-        gpio::{gpioa::PA0, gpioc::PC6, Alternate, Edge, Input, Output, Pin, PushPull},
+        gpio::{Edge, Input, Output, PA0, PC13},
         prelude::*,
     };
-    use systick_monotonic::{fugit::Duration, Systick};
+    use systick_monotonic::{fugit::ExtU64, Systick};
 
     static COUNTER: AtomicUsize = AtomicUsize::new(0);
 
@@ -23,8 +23,8 @@ mod app {
 
     #[local]
     struct Local {
-        led: Pin<'C', 13, Output<PushPull>>,
-        pin: Pin<'A', 0, Input>,
+        led: PC13<Output>,
+        pin: PA0<Input>,
     }
 
     #[monotonic(binds = SysTick, default = true)]
@@ -60,7 +60,7 @@ mod app {
         let count = COUNTER.swap(0, Ordering::SeqCst);
         rprintln!("{}", count);
         ctx.local.led.toggle();
-        blink::spawn_after(Duration::<u64, 1, 1000>::from_ticks(1000)).ok();
+        blink::spawn_after(ExtU64::millis(1000)).ok();
     }
 
     #[task(binds = EXTI0, local = [pin])]
