@@ -13,7 +13,7 @@ cortex-m-rtic = "1.1.4"
 embedded-hal = { version = "0.2.7", features = ["unproven"] }
 fugit = "0.3"
 rp-pico = "0.7.0"
-rp2040-boot2 = { version = "0.2.1" }
+rp2040-boot2 = { version = "0.3.0" }
 rp2040-monotonic = "1.1"
 panic-probe = {version = "0.3"}
 
