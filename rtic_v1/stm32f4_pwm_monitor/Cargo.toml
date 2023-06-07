@@ -18,6 +18,5 @@ version = "0.1.2"
 features = ["cortex-m"]
 
 [dependencies.stm32f4xx-hal]
-git = "https://github.com/stm32-rs/stm32f4xx-hal.git"
-rev = "9bbdac81025292de2a1ba02ca3e60cbedcb70c8c"
-features = ["stm32f446", "rt"]
+version = "0.16"
+features = ["stm32f446"]
