@@ -1,11 +1,10 @@
 name: Build
 on:
+  merge_group:
   pull_request:
   push:
     branches:
       - master
-      - staging
-      - trying
 
 env:
   CARGO_TERM_COLOR: always
