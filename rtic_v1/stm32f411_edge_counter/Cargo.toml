@@ -17,5 +17,5 @@ version = "0.1.2"
 features = ["cortex-m"]
 
 [dependencies.stm32f4xx-hal]
-version = "0.16.1"
+version = "0.16.2"
 features = ["stm32f411", "rtic"]
