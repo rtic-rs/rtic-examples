@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure Rust target (v6, v7, v8.b v8.m)
         run: |
@@ -40,7 +40,7 @@ jobs:
           - v1
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
@@ -71,7 +71,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
@@ -98,7 +98,7 @@ jobs:
           - v1
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache Dependencies
         uses: Swatinem/rust-cache@v2
@@ -122,7 +122,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Run the update script
         run: ./update_dependabot_config.sh
       - name: Ensure that nothing has changed
