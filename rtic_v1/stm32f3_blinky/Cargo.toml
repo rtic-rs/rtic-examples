@@ -6,7 +6,7 @@ name = "stm32f3-blinky"
 version = "0.1.0"
 
 [dependencies]
-embedded-hal = "0.2.7"
+embedded-hal = "1.0.0"
 cortex-m-rtic = "1.1.4"
 systick-monotonic = "1.0.1"
 panic-rtt-target = { version = "0.1.2", features = ["cortex-m"] }
