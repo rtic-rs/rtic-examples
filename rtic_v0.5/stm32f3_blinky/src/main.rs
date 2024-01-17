@@ -4,7 +4,6 @@
 #![no_std]
 
 extern crate panic_semihosting;
-use embedded_hal::digital::v2::OutputPin;
 use rtic::app;
 use rtic::cyccnt::U32Ext;
 use stm32f3xx_hal::gpio::{gpioe::PE10, Output, PushPull};
