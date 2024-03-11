@@ -7,7 +7,7 @@ name = "app"
 version = "0.1.0"
 dependencies = [
  "cortex-m-rtic",
- "cortex-m-semihosting 0.5.0",
+ "cortex-m-semihosting",
  "nrf52832-hal",
  "panic-semihosting",
 ]
@@ -130,15 +130,6 @@ dependencies = [
  "quote",
  "rtic-syntax",
  "syn",
-]
-
-[[package]]
-name = "cortex-m-semihosting"
-version = "0.3.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6bffa6c1454368a6aa4811ae60964c38e6996d397ff8095a8b9211b1c1f749bc"
-dependencies = [
- "cortex-m",
 ]
 
 [[package]]
@@ -284,9 +275,9 @@ checksum = "546c37ac5d9e56f55e73b677106873d9d9f5190605e41a856503623648488cae"
 
 [[package]]
 name = "nrf-hal-common"
-version = "0.16.0"
+version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cd244c63d588066d75cffdcae8a03299fd5fb272e36bdde4a9f922f3e4bc6e4b"
+checksum = "1ea48ed7f0843fe6ec5aac0c42701e9194adfa1ee82ce6d028d64e5f68542be4"
 dependencies = [
  "cast",
  "cfg-if",
@@ -303,9 +294,9 @@ dependencies = [
 
 [[package]]
 name = "nrf52832-hal"
-version = "0.16.0"
+version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4e2e1d21d08826c02a2292d75f46a20e134c879dd2fcf09aa9bbca3d0d40db98"
+checksum = "9a5839dc87e88797f0443aaa597bc794ebc9f3c68113dda96045ab121265ac17"
 dependencies = [
  "embedded-hal",
  "nrf-hal-common",
@@ -325,12 +316,12 @@ dependencies = [
 
 [[package]]
 name = "panic-semihosting"
-version = "0.5.6"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c3d55dedd501dfd02514646e0af4d7016ce36bc12ae177ef52056989966a1eec"
+checksum = "ee8a3e1233d9073d76a870223512ce4eeea43c067a94a445c13bd6d792d7b1ab"
 dependencies = [
  "cortex-m",
- "cortex-m-semihosting 0.3.7",
+ "cortex-m-semihosting",
 ]
 
 [[package]]
